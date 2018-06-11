@@ -19,5 +19,30 @@
 # summaries in (a)
 
 
-import numpy
+import numpy as np
 
+
+def Poisson(x, lamda) :
+    return np.exp(-lamda * x)
+
+x = Poisson(1.0,1.0)
+print(x)
+
+def RandomAppointmentDuration() :
+    return 5.0 + np.random() * 15.0
+
+class Doctor:
+    nextTimeAvailable = 0
+    def AvailableToSeePatient(self, time) :
+        if time > nextTimeAvailable :
+            nextTimeAvailable = time + RandomAppointmentDuration()
+            return True
+        else : return false
+
+
+
+class Office:
+    patientQueue = [] # list of patients
+    doctors = [Doctor] # list of doctors
+    openingTime = 0
+    notionalClosingTime = 7.0
