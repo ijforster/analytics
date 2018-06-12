@@ -65,7 +65,7 @@ class Patient :
     def WaitTime(self) :
         return self.startTime - self.arrivalTime
         
-    def AppointmentComplete(self) : return self.finishTime <> None
+    def AppointmentComplete(self) : return self.finishTime != None
 
 class Office:
 
@@ -102,9 +102,7 @@ class Office:
                 else : busyDoctors[doctor.id] = nextAvailableTime
 
             if (patient.AppointmentComplete() == False) :
-                # in place sort the busy doctors by next available time
-                dictData = busyDoctors.items()
-                dictData.sort(key=lambda tup: tup[1]) 
+                dictData = sorted(busyDoctors.items()) 
                 id, nextAvailableTime = dictData[0]
                 nextAvailableDoctor = self.doctors[id]
                 nextAvailableDoctor.SeePatient(nextAvailableTime)
