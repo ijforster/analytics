@@ -102,7 +102,7 @@ class Office:
                 else : busyDoctors[doctor.id] = nextAvailableTime
 
             if (patient.AppointmentComplete() == False) :
-                dictData = sorted(busyDoctors.items()) 
+                dictData = sorted(busyDoctors.items(),key=lambda x: x[1]) 
                 id, nextAvailableTime = dictData[0]
                 nextAvailableDoctor = self.doctors[id]
                 nextAvailableDoctor.SeePatient(nextAvailableTime)
